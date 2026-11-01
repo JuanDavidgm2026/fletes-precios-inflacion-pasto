@@ -1,7 +1,0 @@
-﻿PERIODO,MOTIVO_AUDITORIA,DECISION
-202004,"Cobertura RNDC inferior al entorno temporal; contracción simultánea de viajes, kg y valor.",CONSERVAR
-202105,Cobertura excepcionalmente baja durante episodio de bloqueos; índice robusto a agregación.,CONSERVAR
-202106,Eslabón posterior a mayo de 2021; sensibilidad de composición revisada.,CONSERVAR
-202301,Variación mensual elevada; robusta a Fisher y agregación.,CONSERVAR
-202302,Cobertura inferior al entorno temporal; mes conservado tras auditoría.,CONSERVAR
-202409,Resultado sensible a depuración/composición; signo positivo estable entre especificaciones.,CONSERVAR
