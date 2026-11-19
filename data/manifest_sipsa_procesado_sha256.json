@@ -1,0 +1,26 @@
+{
+  "archivo": "SIPSA_INDICADORES_MENSUALES_2018_2024_CORREGIDO.csv",
+  "sha256": "227448e82618c3f9dee2f7e72d922cfea5811878ebc02ddb90998c5d10913676",
+  "observaciones": 84,
+  "periodo_inicio": "2018-01",
+  "periodo_fin": "2024-12",
+  "variable_principal": "PM_ponderado_t",
+  "columnas": [
+    "mes",
+    "PM_ponderado_t",
+    "PM_ponderado_lagQ_t",
+    "PM_no_ponderado_t",
+    "kg_total",
+    "kg_usados_indice",
+    "cobertura_indice_pct",
+    "n_productos_indice",
+    "n_productos_lagQ",
+    "fecha",
+    "anio",
+    "indice_base_dic2017_100"
+  ],
+  "fuente": "DANE SIPSA-P y SIPSA-A",
+  "procesamiento": "Pipeline del Colab de investigación",
+  "notebook": "https://colab.research.google.com/drive/1Tu3ZzP1L8XlUejqbS_0eXgZ8QszqiMr7",
+  "exportado_utc": "2026-11-19T02:10:36.201381+00:00"
+}
