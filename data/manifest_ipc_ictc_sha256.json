@@ -1,0 +1,18 @@
+{
+  "archivo": "ipc_ictc_pasto_2018_2024.csv",
+  "sha256": "b7fb6f5b78ed54d0d1bf1ec78ef09aa0f31649a9a0e352dc7fca5312b89bf20e",
+  "observaciones": 84,
+  "inicio": "2018-01",
+  "fin": "2024-12",
+  "columnas": [
+    "mes",
+    "BRECHA_INFLACION_PASTO_COLOMBIA_PP",
+    "IPC_MENSUAL_PASTO_PCT",
+    "IPC_MENSUAL_NACIONAL_PCT",
+    "ICTC_MENSUAL_PCT"
+  ],
+  "fuente_primaria": "DANE",
+  "metodologia": "Fases 9 y 10 del Colab",
+  "notebook": "https://colab.research.google.com/drive/1Tu3ZzP1L8XlUejqbS_0eXgZ8QszqiMr7",
+  "exportado_utc": "2026-11-19T03:12:05.138188+00:00"
+}
