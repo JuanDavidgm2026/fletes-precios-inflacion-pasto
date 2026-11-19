@@ -1,266 +1,240 @@
-# Fletes, precios mayoristas e inflación en Pasto
+# Costos de Transporte, Precios Mayoristas y Brecha Inflacionaria Pasto–Colombia
 
-Repositorio de apoyo al proyecto de investigación sobre la relación entre los costos del transporte de carga, los precios mayoristas de alimentos y la brecha inflacionaria entre Pasto y Colombia.
+Este repositorio contiene el código fuente, la metodología de procesamiento y la auditoría econométrica de la investigación sobre la brecha inflacionaria mensual entre el municipio de Pasto (Mercado Mayorista El Potrerillo) y el agregado nacional de Colombia para el periodo **2018–2024**.
 
-El horizonte general de la investigación corresponde al periodo **2018–2024**. Sin embargo, el índice regional de fletes construido a partir de información del Registro Nacional de Despachos de Carga (RNDC) dispone de una serie mensual reproducible y homogénea para **2020–2024**.
+El estudio analiza la interrelación dinámica entre las variaciones de los fletes de transporte de carga con destino a Pasto (obtenidos de registros oficiales de la base RNDC), el comportamiento de los precios mayoristas de alimentos agrícolas (SIPSA) y la brecha inflacionaria medida a partir del Índice de Precios al Consumidor (IPC).
 
-## Objetivo del repositorio
+---
 
-Este repositorio almacena los archivos necesarios para reproducir, auditar y utilizar la segunda variable principal del proyecto:
+## 1. Metodología de Procesamiento y Pipeline de Datos
 
-**Índice regional de fletes de carga con destino a Pasto.**
+El procesamiento de datos se estructura en un pipeline unificado y reproducible que consta de las siguientes fases:
 
-El índice fue construido a partir de registros oficiales del **Registro Nacional de Despachos de Carga (RNDC) del Ministerio de Transporte de Colombia**.
+### Fase 1: Configuración y Normalización de Fuentes
+* **Mercado de Estudio:** Pasto, El Potrerillo.
+* **Limpieza de Datos:** Normalización de texto (eliminación de tildes, caracteres especiales y unificación a minúsculas) y resolución semántica de columnas entre diferentes versiones estructurales del DANE.
+* **Correcciones Críticas de Escala:** Corrección sistemática de la notación colombiana de puntos de miles para evitar la subestimación de unidades:
+  * En cantidades (SIPSA-A): `1.250` se interpreta correctamente como `1250` kg.
+  * En precios (SIPSA-P): `2.432` se interpreta correctamente como `2432` COP/kg.
 
-La serie no corresponde a un índice oficial publicado por el Ministerio de Transporte. Es un **índice construido por los autores a partir de información oficial RNDC** para aproximar la dinámica mensual de los costos de transporte de carga asociados con Pasto.
+### Fase 2: Descarga de Datos de Alta Reproducción
+* **Descarga Dinámica:** El script realiza scraping directo en los portales oficiales de microdatos del DANE.
+* **Mecanismo de Respaldo (Fallback):** En caso de indisponibilidad del servidor institucional, se activa una descarga desde un release clonado en GitHub (`JuanDavidgm2026/SIPSA-PASTO`).
+* **Auditoría Criptográfica:** Validación estricta del tamaño en bytes y del hash criptográfico **SHA-256** de los 23 archivos `.zip` descargados contra un manifiesto predefinido.
 
-## Cobertura temporal
+### Fases 3 y 3B: Procesamiento del Abastecimiento (SIPSA-A)
+* Extracción y unificación de 15 semestres/cuatrimestres históricos para consolidar la serie temporal mensual de abastecimiento (84 meses continuos de 2018-01 a 2024-12).
+* Exclusión estricta de variables imputadas, conservando exclusivamente la serie física observada.
 
-La base consolidada contiene información mensual para:
+### Fase 4: Procesamiento de Precios Mayoristas (SIPSA-P)
+* Extracción de precios promedios mensuales para el mercado El Potrerillo.
+* Inclusión de **diciembre de 2017** como línea base de comparación temporal para el cálculo de los relativos de precio en enero de 2018.
+* Auditoría matemática de la consistencia interanual para evitar saltos artificiales por quiebre de escala.
 
-**enero de 2020 – diciembre de 2024**
+### Fase 5: Homologación y Cruce Físico-Financiero (Precio-Volumen)
+* Aplicación manual y conservadora de **7 reglas de equivalencia** de productos para evitar sesgos por denominaciones inconsistentes en el mercado (ej. *cebolla junca* $\leftrightarrow$ *cebolla junca pastusa*).
+* Cálculo de la **cobertura física del índice**, logrando emparejar un promedio histórico anual de **79.64%** de las toneladas físicas de alimentos ingresadas a Pasto con un precio de mercado válido.
 
-El índice se normaliza con:
+### Fase 6: Construcción de Indicadores de Variación Mensual
+* **Indicador Principal ($PM\_ponderado\_t$):** Cálculo de variaciones mensuales acumuladas mediante una **media geométrica ponderada por volumen físico contemporáneo** ($Q_t$):
+  $$PM_t = 100 \times \left( \exp\left[ \sum w_{i,t} \ln\left(\frac{p_{i,t}}{p_{i,t-1}}\right) \right] - 1 \right)$$
+  Donde $w_{i,t} = \frac{q_{i,t}}{\sum q_{j,t}}$.
+* **Análisis de Sensibilidad:** Construcción de variaciones con ponderadores rezagados ($Q_{t-1}$) y especificaciones no ponderadas (pesos iguales en canasta).
 
-**enero de 2020 = 100**
+### Fase 7: Análisis de Robustez de Canasta y Concentración
+* Medición de la concentración de ponderación en el mercado físico de Pasto mediante el **Índice Herfindahl-Hirschman (HHI)** y el número efectivo de productos.
+* Simulaciones de canasta restringida (*Leave-One-Out*) excluyendo secuencialmente los 10 productos más importantes por peso físico.
+* Cálculo de la continuidad temporal de la canasta (22 productos 100% continuos durante todo el horizonte temporal).
 
-Las variaciones mensuales utilizadas posteriormente en los modelos econométricos están disponibles para:
+### Fase 8: Variable de Transporte (RNDC Regional)
+* Carga y auditoría de la serie mensual congelada del flete regional hacia Pasto construida con el **Índice encadenado de Törnqvist** (59 variaciones mensuales, febrero 2020 - diciembre 2024).
+* Integridad física de la base validada con SHA-256.
 
-**febrero de 2020 – diciembre de 2024**
+### Fase 9: Variable Dependiente (Brecha Inflacionaria)
+* Extracción directa de las series mensuales del IPC de Pasto y el IPC nacional del DANE.
+* Definición de la brecha mensual: $B_t = \pi_{Pasto, t} - \pi_{Colombia, t}$ (84 meses continuos, 2018-01 a 2024-12).
 
-Esto genera un total de:
+### Fase 10: Benchmark de Transporte (ICTC Nacional)
+* Descarga y estructuración del Índice de Costos del Transporte de Carga (ICTC) nacional para análisis comparativo y de sensibilidad econométrica.
 
-**59 variaciones mensuales.**
+---
 
-La ausencia de observaciones equivalentes para 2018–2019 no se corrige mediante interpolaciones, imputaciones ni empalmes artificiales con otros indicadores.
+## 2. Advertencias Metodológicas Críticas
 
-## Construcción del índice
+El equipo investigador y el lector deben considerar de forma explícita las siguientes limitaciones y precisiones estadísticas:
 
-La unidad elemental utilizada para comparar los costos de transporte entre meses se define mediante la combinación:
+1. **Inexistencia de Relación Causal:** Ningún modelo de rezagos distribuidos (DL) o autorregresivo (ARDL) presentado en esta investigación constituye evidencia causal de efectos de transporte sobre la brecha inflacionaria. Las relaciones encontradas representan únicamente **asociaciones dinámicas condicionales**.
+2. **Sin Imputaciones ni Modificaciones:** El estudio prohíbe de manera absoluta la imputación, interpolación o alteración de datos ausentes. Los periodos de fletes no disponibles (2018-01 a 2020-01) se excluyen de la estimación, preservando la muestra originalmente reportada.
+3. **Muestras Diferentes según el Análisis:** El repositorio maneja tres muestras diferenciadas:
+   * **Muestra Histórica (84 meses):** Para análisis descriptivo general.
+   * **Muestra Común Completa (59 meses):** Intersección física de las variables.
+   * **Muestra de Estimación ARDL (56 meses):** Rango común ajustado por el consumo de rezagos temporales ($t-3$) para mantener muestras comparables entre especificaciones.
+4. **ICTC vs RNDC:** El ICTC es un indicador nacional de costos teóricos de operación. No es conceptualmente equivalente ni debe empalmarse con el indicador regional RNDC, el cual mide variaciones de fletes reales observados en transacciones con destino Pasto.
+5. **Semáforo y Alertas Ilustrativas:** El semáforo de presiones de fletes/precios implementado es una **construcción matemática retrospectiva** con fines académicos. No constituye un predictor operativo de bloqueos viales, cierres físicos ni situaciones de fuerza mayor en tiempo real.
+6. **Diferencia entre Boletines y Tasas Mensuales:** El colapso del abastecimiento quincenal reportado para mayo de 2021 corresponde a datos de boletines publicados por el DANE para quincenas específicas. Estas cifras no deben interpretarse como si fueran variaciones mensuales promedio ni mezclarse aritméticamente con el panel econométrico.
 
-`ORIGEN × CONFIGURACIÓN VEHICULAR × MERCANCÍA`
 
-El destino se mantiene fijo en **Pasto**.
+---
 
-Para cada celda elemental y mes se calcula el valor medio pagado por viaje con información monetaria válida:
+## 3. Reproducibilidad y auditoría de la variable RNDC
 
-`p(i,t) = VALORESPAGADOS / VIAJES_CON_VALOR`
+### 3.1. Construcción del indicador
 
-donde:
+La variable regional de fletes hacia Pasto fue construida
+a partir de registros del Registro Nacional de Despachos
+de Carga (RNDC) del Ministerio de Transporte de Colombia.
 
-`VIAJES_CON_VALOR = VIAJESTOTALES - VIAJESVALORCERO`
+El periodo estudiado comprende enero de 2020 a diciembre
+de 2024, con 60 niveles mensuales del índice encadenado
+de Törnqvist y 59 variaciones porcentuales mensuales.
 
-El índice principal utiliza un **índice encadenado de Törnqvist**, calculado únicamente sobre celdas comparables entre los meses `t-1` y `t`.
+La unidad de análisis del panel elemental corresponde
+a combinaciones de origen, configuración vehicular,
+mercancía y periodo.
 
-Como ejercicios de robustez se incluyen:
+**Repositorio público de datos y código:**
 
-- índice de Fisher sobre las mismas celdas comparables;
-- índice Törnqvist calculado sin aplicar la regla jerárquica de elegibilidad monetaria;
-- sensibilidad excluyendo observaciones con valor elemental de $2.000;
-- agregación alternativa por origen y configuración vehicular.
+https://github.com/JuanDavidgm2026/fletes-precios-inflacion-pasto
 
-## Tratamiento de observaciones monetarias
+**Notebook original de construcción:**
 
-La construcción del índice sigue un criterio conservador.
+https://github.com/JuanDavidgm2026/fletes-precios-inflacion-pasto/blob/main/notebooks/construccion_indice_fletes_RNDC_Pasto.ipynb
 
-No se realizan:
+### 3.2. Auditoría independiente de reproducibilidad
 
-- imputaciones;
-- winsorizaciones;
-- sustituciones de valores;
-- eliminación automática de observaciones altas;
-- cortes monetarios arbitrarios.
+Se desarrolló una auditoría técnica para examinar
+la cadena de procesamiento del indicador regional.
 
-Las observaciones monetarias excepcionalmente altas se conservan debido a que pueden corresponder a choques logísticos reales.
+Las comprobaciones incluyen:
 
-La depuración se concentra exclusivamente en valores monetarios anormalmente bajos cuando existe evidencia simultánea suficiente.
+- Integridad de archivos mediante SHA-256.
+- Cobertura temporal entre 2020 y 2024.
+- Verificación de registros con destino Pasto.
+- Reconstrucción del panel elemental desde el maestro.
+- Comprobación de reglas de depuración N1/N2.
+- Reejecución del bloque estadístico original.
+- Reconstrucción matemática del índice Törnqvist.
+- Comparación de los niveles del índice con la
+  serie utilizada en las estimaciones econométricas.
 
-La regla utiliza:
+**Notebook de auditoría RNDC depurado:**
 
-- información histórica propia de la celda;
-- comparación transversal dentro de la misma ruta;
-- comparación con observaciones de la misma mercancía y configuración en otras rutas;
-- umbral robusto basado en `z = 3.5`;
-- únicamente información contemporánea o pasada.
+https://colab.research.google.com/drive/1zDI2n_Fg7ZAQZcsfIWlTUVsdKStBiwbN
 
-No se utiliza información de meses futuros para decidir la elegibilidad de una observación.
+El notebook anterior constituye el anexo técnico
+de auditoría y puede ejecutarse independientemente
+del notebook econométrico principal.
 
-## Resultado principal
+### 3.3. Principales resultados de la auditoría
 
-La variable econométrica principal es:
+Las comprobaciones efectuadas permitieron verificar:
 
-`VAR_FLETE_TORNQVIST_PCT`
+- 78.819 registros en la base maestra procesada.
+- 76.218 celdas en el panel elemental.
+- 76.218 celdas en el panel jerárquico.
+- Reproducción de las reglas de depuración N1/N2
+  mediante el bloque estadístico original.
+- 60 niveles mensuales del índice de Törnqvist.
+- 59 variaciones porcentuales mensuales.
+- Concordancia numérica del índice publicado
+  con la serie econométrica utilizada.
 
-Esta variable representa la variación porcentual mensual del índice regional de fletes construido mediante Törnqvist.
+Estas comprobaciones corresponden a la
+reproducibilidad desde los artefactos procesados
+disponibles en el repositorio de investigación.
 
-También se conservan las siguientes variables de sensibilidad:
+### 3.4. Contraste con registros oficiales
 
-- `VAR_FLETE_FISHER_PCT`
-- `VAR_FLETE_CRUDO_PCT`
-- `VAR_FLETE_SIN_2000_PCT`
+Adicionalmente, se efectuó una conciliación
+independiente para enero de 2020 utilizando
+un archivo descargado directamente del portal
+RNDC del Ministerio de Transporte.
 
-## Estructura del repositorio
+La conciliación obtuvo:
 
-```text
-fletes-precios-inflacion-pasto/
-│
-├── data/
-│   ├── RNDC_PASTO_MASTER_2020_2024.parquet
-│   ├── RNDC_PASTO_PANEL_ELEMENTAL_2020_2024.parquet
-│   ├── RNDC_PASTO_PANEL_JERARQUICO_2020_2024.parquet
-│   ├── indice_flete_regional_pasto_2020_2024.parquet
-│   ├── variable2_flete_regional_modelo_2020_2024.csv
-│   ├── robustez_variable2.csv
-│   ├── episodios_auditados_variable2.csv
-│   └── metadata_variable2.json
-│
-├── notebooks/
-│   └── construccion_indice_fletes_RNDC_Pasto.ipynb
-│
-└── README.md
-```
+- 1.156 registros con destino Pasto.
+- Nueve campos comunes contrastados.
+- Cero discrepancias entre los multiconjuntos
+  de registros después de normalizar sus formatos.
 
-## Descripción de los archivos
+La prueba de enero de 2020 fue realizada
+durante el proceso de auditoría y se documentó
+en el cuaderno de desarrollo.
 
-### `RNDC_PASTO_MASTER_2020_2024.parquet`
+Esta conciliación no se extendió a los
+59 meses restantes del periodo 2020-2024.
 
-Base maestra consolidada con los registros RNDC utilizados para Pasto durante 2020–2024.
+Por tanto, no se afirma haber reproducido
+la totalidad de la base maestra directamente
+desde los archivos Excel oficiales originales.
 
-Contiene aproximadamente 78 mil registros y constituye el punto de partida de la construcción del índice.
+### 3.5. Integración con el notebook principal
 
-### `RNDC_PASTO_PANEL_ELEMENTAL_2020_2024.parquet`
+La fase 8 del notebook econométrico principal
+descarga la serie RNDC congelada y verifica
+su integridad mediante SHA-256.
 
-Panel mensual construido a partir de las combinaciones de origen, configuración vehicular y mercancía.
+La fase 8B descarga el índice Törnqvist
+publicado, verifica su integridad y reproduce
+las 59 variaciones mensuales para comprobar
+su concordancia con la serie econométrica.
 
-### `RNDC_PASTO_PANEL_JERARQUICO_2020_2024.parquet`
+La auditoría independiente amplía esas pruebas
+hacia el panel elemental y la depuración
+jerárquica del indicador.
 
-Panel resultante después de aplicar la regla jerárquica de elegibilidad monetaria.
+No se realizan imputaciones ni modificaciones
+de los datos empleados en las estimaciones.
 
-### `indice_flete_regional_pasto_2020_2024.parquet`
+### 3.6. Instrucciones de reproducibilidad
 
-Serie mensual del índice regional de fletes.
+**Notebook econométrico principal:**
 
-Incluye el índice Törnqvist principal y las principales alternativas utilizadas para robustez.
+https://colab.research.google.com/drive/1mKtipF99zHAk_ys3SQE7UQrjTuhYTuF_
 
-### `variable2_flete_regional_modelo_2020_2024.csv`
+**Notebook de auditoría RNDC:**
 
-Archivo compacto destinado al análisis econométrico.
+https://colab.research.google.com/drive/1zDI2n_Fg7ZAQZcsfIWlTUVsdKStBiwbN
 
-Contiene las **59 variaciones mensuales entre febrero de 2020 y diciembre de 2024** y será utilizado posteriormente en el notebook maestro de la investigación.
+**Procedimiento recomendado:**
 
-### `robustez_variable2.csv`
+1. Abrir el notebook principal en Google Colab.
+2. Seleccionar "Entorno de ejecución" y "Ejecutar todas".
+3. Verificar las fases 8 y 8B.
+4. Abrir y ejecutar el notebook independiente RNDC.
+5. Revisar los dictámenes de las comprobaciones.
+6. Consultar las tablas, figuras y diagnósticos
+   econométricos generados por el notebook principal.
 
-Resultados de las principales especificaciones alternativas utilizadas para evaluar la estabilidad del índice.
+La correcta ejecución del código demuestra
+consistencia computacional dentro del alcance
+de las comprobaciones realizadas.
 
-### `episodios_auditados_variable2.csv`
+No constituye evidencia de causalidad ni
+garantiza significancia o estabilidad
+estadística de las asociaciones estimadas.
 
-Registro de meses con movimientos o coberturas particulares que fueron revisados individualmente.
+---
 
-Estos episodios se conservaron cuando existía evidencia de que podían corresponder a cambios reales y no a errores evidentes de los datos.
+## 4. Alcance y limitaciones
 
-### `metadata_variable2.json`
+La investigación utiliza datos oficiales
+y artefactos procesados publicados para
+facilitar la reproducción de sus resultados.
 
-Metadatos metodológicos de la Variable 2, incluyendo periodo, método de construcción, restricciones de tratamiento de datos y hashes de verificación.
+La reproducibilidad del índice RNDC desde
+las bases procesadas fue comprobada mediante
+auditorías independientes.
 
-### `construccion_indice_fletes_RNDC_Pasto.ipynb`
+La verificación directa con registros oficiales
+originales abarcó únicamente enero de 2020
+y nueve campos comunes.
 
-Notebook de construcción y auditoría de la Variable 2.
+Los demás periodos no se consideran
+conciliados directamente con la fuente primaria.
 
-Contiene el proceso utilizado para descargar, transformar, validar, consolidar y construir el índice regional.
+Los resultados econométricos deben interpretarse
+como asociaciones dinámicas condicionales,
+sin atribuciones causales.
 
-La reconstrucción completa desde los archivos mensuales RNDC puede requerir un tiempo considerable. Para el análisis econométrico posterior se recomienda utilizar directamente los archivos finales incluidos en `data/`, cuya integridad puede comprobarse mediante SHA-256.
 
-## Verificación de integridad
-
-Los principales archivos congelados pueden verificarse mediante los siguientes hashes SHA-256.
-
-### Serie econométrica
-
-```text
-variable2_flete_regional_modelo_2020_2024.csv
-
-aaec180a88d32bbccbfb13b94be4784c9e9b4c6f23d9a93b7475b1acd1bd3891
-```
-
-### Índice regional
-
-```text
-indice_flete_regional_pasto_2020_2024.parquet
-
-4336398949cbc5c74a95b7bf982f241a5b4e5564e44b6d67313536c0a4fa0e19
-```
-
-### Base maestra RNDC
-
-```text
-RNDC_PASTO_MASTER_2020_2024.parquet
-
-b6db3d2caef389ade80117f36c2db58dd3d4fe25a27425c796eb8dd1dadb6096
-```
-
-### Panel con regla jerárquica
-
-```text
-RNDC_PASTO_PANEL_JERARQUICO_2020_2024.parquet
-
-c285c6e3c1f9de3eb10b38ef2ab5fe9236617d04a4d404a9a7362e19ec09d9b0
-```
-
-## Reproducibilidad
-
-La construcción busca preservar la trazabilidad entre los datos oficiales y la serie econométrica final.
-
-Para reproducir completamente la Variable 2:
-
-1. Abrir `notebooks/construccion_indice_fletes_RNDC_Pasto.ipynb`.
-2. Ejecutar las celdas en orden en un entorno limpio de Google Colab.
-3. Permitir la descarga de los archivos oficiales RNDC requeridos.
-4. Ejecutar las validaciones de estructura y cobertura.
-5. Construir el panel elemental.
-6. Aplicar la regla jerárquica de elegibilidad monetaria.
-7. Construir los índices Törnqvist y Fisher.
-8. Ejecutar las pruebas de robustez y auditorías.
-9. Comparar los hashes obtenidos con los registrados en este repositorio.
-
-Para replicar únicamente el análisis econométrico posterior no es necesario reconstruir toda la base RNDC. Puede utilizarse directamente:
-
-`data/variable2_flete_regional_modelo_2020_2024.csv`
-
-verificando previamente su hash SHA-256.
-
-## Limitaciones
-
-El horizonte general del proyecto es 2018–2024, pero la fuente pública actualmente reproducible permite construir de manera homogénea el índice regional RNDC utilizado en el modelo principal únicamente para 2020–2024.
-
-Por esta razón:
-
-- no se imputan observaciones para 2018–2019;
-- no se interpolan meses faltantes;
-- no se empalma artificialmente el índice RNDC con el ICTC;
-- la especificación econométrica principal que incorpora el índice regional utiliza la muestra temporal común disponible.
-
-Esta decisión prioriza la comparabilidad y la integridad de la información frente a la ampliación artificial del número de observaciones.
-
-## Proyecto de investigación
-
-El índice forma parte del proyecto:
-
-**Costos del transporte de carga, precios mayoristas de alimentos y brecha inflacionaria Pasto–Colombia: evidencia mensual, 2018–2024.**
-
-El análisis posterior integrará:
-
-1. precios mayoristas de alimentos provenientes de SIPSA;
-2. índice regional de fletes construido con RNDC;
-3. brecha inflacionaria mensual entre Pasto y Colombia.
-
-Las estimaciones se interpretarán como **asociaciones estadísticas y dinámicas**, no como efectos causales identificados.
-
-## Licencia y fuentes
-
-Los datos originales pertenecen a sus respectivas entidades públicas.
-
-Este repositorio conserva productos derivados utilizados exclusivamente con fines académicos y de reproducibilidad de la investigación.
-
-Fuente principal de la Variable 2:
-
-**Registro Nacional de Despachos de Carga (RNDC) — Ministerio de Transporte de Colombia.**
