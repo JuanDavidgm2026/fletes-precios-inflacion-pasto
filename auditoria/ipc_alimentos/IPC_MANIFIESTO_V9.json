@@ -1,0 +1,456 @@
+{
+  "proyecto": "IPC alimentos Pasto-Colombia",
+  "fuente": "DANE",
+  "periodo": "2020-01 a 2024-12",
+  "creacion_utc": "2026-11-21T03:12:05.338990+00:00",
+  "anexos": [
+    {
+      "periodo": "2020-01",
+      "archivo": "IPC_DANE_2020-01.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_ene20.xlsx",
+      "sha256": "edce30f1a7ae1ab33c3c595b081dee7aacbac152ba3b43c20a1532bd7be7acdb",
+      "bytes": 498803
+    },
+    {
+      "periodo": "2020-02",
+      "archivo": "IPC_DANE_2020-02.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_feb20.xlsx",
+      "sha256": "167e739ed26a6526ce3f07c6c0a6e1e0b51cad24b44fd6986b84a4f76a050b03",
+      "bytes": 516533
+    },
+    {
+      "periodo": "2020-03",
+      "archivo": "IPC_DANE_2020-03.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_mar20.xlsx",
+      "sha256": "9b6230e23f64568664dc82bdd0454b0f27d14ffef4ab4ed99ee2b7209a6d8389",
+      "bytes": 476706
+    },
+    {
+      "periodo": "2020-04",
+      "archivo": "IPC_DANE_2020-04.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_abr20.xlsx",
+      "sha256": "bf3c5d959ebb6e580dcf329d395221357dd7125d57d6c98c077f5166a1f37c84",
+      "bytes": 491106
+    },
+    {
+      "periodo": "2020-05",
+      "archivo": "IPC_DANE_2020-05.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_may20.xlsx",
+      "sha256": "35fae7c90e8a0cb227baf464af16c7ff86c188a0b96232085f7d09f5789360cf",
+      "bytes": 480183
+    },
+    {
+      "periodo": "2020-06",
+      "archivo": "IPC_DANE_2020-06.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_jun20.xlsx",
+      "sha256": "b111fd2676a80cee34fce85632b50f629e6326211e81366a62a3fc99b7e9abcc",
+      "bytes": 480496
+    },
+    {
+      "periodo": "2020-07",
+      "archivo": "IPC_DANE_2020-07.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_jul20.xlsx",
+      "sha256": "10cc5ee5d01a6a84ece8218e074b6c24c4cb937159dad163ef00abd36ca614ee",
+      "bytes": 480758
+    },
+    {
+      "periodo": "2020-08",
+      "archivo": "IPC_DANE_2020-08.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_ago20.xlsx",
+      "sha256": "20e7a1ba45b2b800b2da4e96779908258b3b3c17d199baa28d0532c8b8b21089",
+      "bytes": 482538
+    },
+    {
+      "periodo": "2020-09",
+      "archivo": "IPC_DANE_2020-09.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_sep20.xlsx",
+      "sha256": "791cb6471b8d207a783d918e0a26cc21963340b69029074ea7216a8c68a01671",
+      "bytes": 480978
+    },
+    {
+      "periodo": "2020-10",
+      "archivo": "IPC_DANE_2020-10.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_oct20.xlsx",
+      "sha256": "535a86ed82165f6cf1a74528b3b8e628525b8def44c6aed000992d10538ecc82",
+      "bytes": 481520
+    },
+    {
+      "periodo": "2020-11",
+      "archivo": "IPC_DANE_2020-11.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_nov20.xlsx",
+      "sha256": "6a93ec8acfb2abea02f5771a870db5c974b18a76c8612c9b29922129e29ec86b",
+      "bytes": 364183
+    },
+    {
+      "periodo": "2020-12",
+      "archivo": "IPC_DANE_2020-12.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_dic20.xlsx",
+      "sha256": "d852587951efc1de7e720d9c74782cc5e017d46b5bd50707f52b6b50a8ef08c7",
+      "bytes": 402051
+    },
+    {
+      "periodo": "2021-01",
+      "archivo": "IPC_DANE_2021-01.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_ene21.xlsx",
+      "sha256": "de1f8bbee59a1acedaf42d9cc042c282d5f1d59195c39cf31399168465ff8ee6",
+      "bytes": 352783
+    },
+    {
+      "periodo": "2021-02",
+      "archivo": "IPC_DANE_2021-02.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_feb21.xlsx",
+      "sha256": "ef02f3783551139bd4711283df411b550f2b456c2e9d95ce124d67a4eff12325",
+      "bytes": 354027
+    },
+    {
+      "periodo": "2021-03",
+      "archivo": "IPC_DANE_2021-03.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_mar21.xlsx",
+      "sha256": "55fc6d886e0277dec25e0343f8bdd03fd6729f808470b91e574a85aaf6038243",
+      "bytes": 354123
+    },
+    {
+      "periodo": "2021-04",
+      "archivo": "IPC_DANE_2021-04.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_abr21.xlsx",
+      "sha256": "a0bfd775449c3de57a13ff968d349fd30c13e5c75a2cca9622846f774aca1ba4",
+      "bytes": 365796
+    },
+    {
+      "periodo": "2021-05",
+      "archivo": "IPC_DANE_2021-05.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_may21.xlsx",
+      "sha256": "20788cbd2113007b020d51056e1ffeb3ac947d04d22a7e803cb06495ba06c4b9",
+      "bytes": 354858
+    },
+    {
+      "periodo": "2021-06",
+      "archivo": "IPC_DANE_2021-06.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_jun21.xlsx",
+      "sha256": "28c120214793f4b9c74c287a31330f85ded485237091e2c720ea9a4cbbe664cc",
+      "bytes": 369159
+    },
+    {
+      "periodo": "2021-07",
+      "archivo": "IPC_DANE_2021-07.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_jul21.xlsx",
+      "sha256": "8dcdf79716b3a868a8fa50ca1557ff964acdfe08726eff6dc780bc9744afe0a5",
+      "bytes": 363806
+    },
+    {
+      "periodo": "2021-08",
+      "archivo": "IPC_DANE_2021-08.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_ago21.xlsx",
+      "sha256": "344b4a9c8d229236babb50911b2b8766eecc40f4677c64b3c4359897a21a7c9c",
+      "bytes": 374966
+    },
+    {
+      "periodo": "2021-09",
+      "archivo": "IPC_DANE_2021-09.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_sep21.xlsx",
+      "sha256": "22778ddb50346a0482a9b6248eb6c37519e6b412e70bbdc1b4de7c69d8416b63",
+      "bytes": 363978
+    },
+    {
+      "periodo": "2021-10",
+      "archivo": "IPC_DANE_2021-10.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_oct21.xlsx",
+      "sha256": "fcd24a89a63db0d6d1897acf1744e33bc10fb82fc88cc4c8808089637720ef32",
+      "bytes": 364007
+    },
+    {
+      "periodo": "2021-11",
+      "archivo": "IPC_DANE_2021-11.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_nov21.xlsx",
+      "sha256": "2bfe085b3e1260bbacaf8f39fc75797333532416f987cb19b594a00f307c1231",
+      "bytes": 363764
+    },
+    {
+      "periodo": "2021-12",
+      "archivo": "IPC_DANE_2021-12.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_dic21.xlsx",
+      "sha256": "a81f657dc7ea836f8e1126a59544aa9ea03599e87cd527374f68e9ba7751e8c7",
+      "bytes": 364855
+    },
+    {
+      "periodo": "2022-01",
+      "archivo": "IPC_DANE_2022-01.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_ene22.xlsx",
+      "sha256": "0f115d30ce5d41280805616ea04320d02fe34fbc1b9bdaebbdca9f623e22b694",
+      "bytes": 355646
+    },
+    {
+      "periodo": "2022-02",
+      "archivo": "IPC_DANE_2022-02.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_feb22.xlsx",
+      "sha256": "e0bfb695271b665f1dba127e56ca97bd6a50b8607b7cdc7f3e2335a50ebeb65d",
+      "bytes": 357716
+    },
+    {
+      "periodo": "2022-03",
+      "archivo": "IPC_DANE_2022-03.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_mar22.xlsx",
+      "sha256": "f0c044fcc2e632c93c25d16ec9cb7cfd5fb319006c4a399e01bc2de791684862",
+      "bytes": 358412
+    },
+    {
+      "periodo": "2022-04",
+      "archivo": "IPC_DANE_2022-04.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_abr22.xlsx",
+      "sha256": "53a1034856238f490f0b21bcd936614e09d6371a47aad063307fe0d0245727c4",
+      "bytes": 358057
+    },
+    {
+      "periodo": "2022-05",
+      "archivo": "IPC_DANE_2022-05.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_may22.xlsx",
+      "sha256": "2fb09a70a2ee5a1770fe253eaf949f9882c532749a20d3b0c077e5447ed61df2",
+      "bytes": 359156
+    },
+    {
+      "periodo": "2022-06",
+      "archivo": "IPC_DANE_2022-06.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_jun22.xlsx",
+      "sha256": "ed19c3ccde391809afea43885412fb2a742f7753da615033094d678d9b636220",
+      "bytes": 359086
+    },
+    {
+      "periodo": "2022-07",
+      "archivo": "IPC_DANE_2022-07.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_jul22.xlsx",
+      "sha256": "ddf90480620918c8f6e82a47a903b59b13c2206d0684872f68cba9cea2afc490",
+      "bytes": 364965
+    },
+    {
+      "periodo": "2022-08",
+      "archivo": "IPC_DANE_2022-08.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_ago22.xlsx",
+      "sha256": "5d0102c4e1d1fc0a790b800548e82aee5fd6fd60e2b05735f58441bfab969341",
+      "bytes": 416196
+    },
+    {
+      "periodo": "2022-09",
+      "archivo": "IPC_DANE_2022-09.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_sep22.xlsx",
+      "sha256": "ed0900f313e41ddc61e3a7b95ec9aadb83b8d58fd9beeb07c4091a3be0909b60",
+      "bytes": 417074
+    },
+    {
+      "periodo": "2022-10",
+      "archivo": "IPC_DANE_2022-10.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_oct22.xlsx",
+      "sha256": "2f20b4df560a41118ddf025503e67bd47f2e9b8a6dfbad2e79f947386f116c5a",
+      "bytes": 417215
+    },
+    {
+      "periodo": "2022-11",
+      "archivo": "IPC_DANE_2022-11.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_nov22.xlsx",
+      "sha256": "6a2a3cbcc1735d70888bae5811dcfa7718f80c3a4da70a8622cda848de21dd2e",
+      "bytes": 416291
+    },
+    {
+      "periodo": "2022-12",
+      "archivo": "IPC_DANE_2022-12.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_dic22.xlsx",
+      "sha256": "7258e930306790bf3fc75f4fb489d04286c3035cb2a3da11e87949140b647b90",
+      "bytes": 415727
+    },
+    {
+      "periodo": "2023-01",
+      "archivo": "IPC_DANE_2023-01.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_ene23.xlsx",
+      "sha256": "303ae16dc4d35a524dc47b0649b2f4d016ab6ed777feae47094da4161a91a0c1",
+      "bytes": 415605
+    },
+    {
+      "periodo": "2023-02",
+      "archivo": "IPC_DANE_2023-02.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_feb23.xlsx",
+      "sha256": "709c025540553192f77f1062422b4ab79bae6c06f1fcd82b725ab9e4a9a4a7b2",
+      "bytes": 437937
+    },
+    {
+      "periodo": "2023-03",
+      "archivo": "IPC_DANE_2023-03.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_mar23.xlsx",
+      "sha256": "1fc165409e47dd12b92cf5594b1de51b6d3fa861e004c855bd4a551b62a15165",
+      "bytes": 384960
+    },
+    {
+      "periodo": "2023-04",
+      "archivo": "IPC_DANE_2023-04.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/investigaciones/boletines/ipc/anexo_ipc_abr23.xlsx",
+      "sha256": "a71756a41265a2f06e2df06608f91ad09d4317a997a6c92d092506e757dd0f7c",
+      "bytes": 385507
+    },
+    {
+      "periodo": "2023-05",
+      "archivo": "IPC_DANE_2023-05.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/anex-IPC-may2023.xlsx",
+      "sha256": "483a001eb59aa86753c5cf72b7253530ad398b4a144ac632e40b8e587c67847e",
+      "bytes": 845680
+    },
+    {
+      "periodo": "2023-06",
+      "archivo": "IPC_DANE_2023-06.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/anex-IPC-jun2023.xlsx",
+      "sha256": "ecaf33e2e090cde35852ddb4bc14f522dc228cc3fec2483e2dfab22124331193",
+      "bytes": 858832
+    },
+    {
+      "periodo": "2023-07",
+      "archivo": "IPC_DANE_2023-07.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/anex-IPC-jul2023.xlsx",
+      "sha256": "ec118cd42fb7860b7027a0437e311bda3f8bff6dc9225223b0f56304a3d2e4b5",
+      "bytes": 859345
+    },
+    {
+      "periodo": "2023-08",
+      "archivo": "IPC_DANE_2023-08.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/anex-IPC-ago2023.xlsx",
+      "sha256": "fd9142a46239432b03315a6b9ccf6ee017f8ec7709ae8e8ded46244a8fc006bd",
+      "bytes": 932425
+    },
+    {
+      "periodo": "2023-09",
+      "archivo": "IPC_DANE_2023-09.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/anex-IPC-sep2023.xlsx",
+      "sha256": "7d5579b977f3a0f5fe91d775b1de237f951f195cdfc15e6e632bf053c2e053bc",
+      "bytes": 928352
+    },
+    {
+      "periodo": "2023-10",
+      "archivo": "IPC_DANE_2023-10.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/anex-IPC-oct2023.xlsx",
+      "sha256": "2db958677d0d342e3f239f2f2f48fc7077587cd7390bf7803b63fb5c61aabf32",
+      "bytes": 930874
+    },
+    {
+      "periodo": "2023-11",
+      "archivo": "IPC_DANE_2023-11.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/anex-IPC-nov2023.xlsx",
+      "sha256": "8f44d7344fc2e26624f4e69c385dea878056b945464bbbd1825124fce8bd1ca6",
+      "bytes": 931903
+    },
+    {
+      "periodo": "2023-12",
+      "archivo": "IPC_DANE_2023-12.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/anex-IPC-dic2023.xlsx",
+      "sha256": "b7aa8401a9618e354b58496604b2cc93b5d761ef69a906649ba3d8d4e8b29e34",
+      "bytes": 931828
+    },
+    {
+      "periodo": "2024-01",
+      "archivo": "IPC_DANE_2024-01.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/anex-IPC-ene2024.xlsx",
+      "sha256": "a0ed4f6aa50b78ee189792d34e8c985dc6c3a9a0b992120e6a864ba1d017a9ce",
+      "bytes": 931850
+    },
+    {
+      "periodo": "2024-02",
+      "archivo": "IPC_DANE_2024-02.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/anex-IPC-feb2024.xlsx",
+      "sha256": "317d4881b819ff808e247c856b63e0e1faf856acfe26c8540b587c13890f8cee",
+      "bytes": 932424
+    },
+    {
+      "periodo": "2024-03",
+      "archivo": "IPC_DANE_2024-03.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/anex-IPC-mar2024.xlsx",
+      "sha256": "bd5238a8d203506af11bc680ec597f1b2956843a70edbc4f746f37e0ff6606d2",
+      "bytes": 932375
+    },
+    {
+      "periodo": "2024-04",
+      "archivo": "IPC_DANE_2024-04.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/anex-IPC-abr2024.xlsx",
+      "sha256": "c5b0e7bd6d54d0122c35ebf0402ebf3dcd891f0cd49632cdaccaef16ba08a440",
+      "bytes": 932981
+    },
+    {
+      "periodo": "2024-05",
+      "archivo": "IPC_DANE_2024-05.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/anex-IPC-may2024.xlsx",
+      "sha256": "0ccb73f7f738aa4f3c644a2c6474a8a78f25c16f976ab057d03a8b6c0f245780",
+      "bytes": 933415
+    },
+    {
+      "periodo": "2024-06",
+      "archivo": "IPC_DANE_2024-06.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/anex-IPC-jun2024.xlsx",
+      "sha256": "37aa10a8e449b7df109a147b920acd053c3f961feb6c546bf5482f3a3b65a454",
+      "bytes": 924383
+    },
+    {
+      "periodo": "2024-07",
+      "archivo": "IPC_DANE_2024-07.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/anex-IPC-jul2024.xlsx",
+      "sha256": "a0a62072c219a91aa7f1d21e65a4bcc67ed2ad6659619dbcbb7d3890f818950b",
+      "bytes": 324589
+    },
+    {
+      "periodo": "2024-08",
+      "archivo": "IPC_DANE_2024-08.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/anex-IPC-ago2024.xlsx",
+      "sha256": "c01a354889acee4d5955a30548657524a0d9c44d0455af93fa777cdbc4e989a4",
+      "bytes": 324761
+    },
+    {
+      "periodo": "2024-09",
+      "archivo": "IPC_DANE_2024-09.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/anex-IPC-sep2024.xlsx",
+      "sha256": "9fa7425a6f788bc4769d97527d1f8b68a5e037c642e81eb6d5bc7a6e214b8062",
+      "bytes": 325548
+    },
+    {
+      "periodo": "2024-10",
+      "archivo": "IPC_DANE_2024-10.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/oct2024/anex-IPC-oct2024.xlsx",
+      "sha256": "27152c8f9fd57cdf16a2ae48886becc8d2c04f62579a516009ce2c2b0d916954",
+      "bytes": 325886
+    },
+    {
+      "periodo": "2024-11",
+      "archivo": "IPC_DANE_2024-11.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/nov2024/anex-IPC-nov2024.xlsx",
+      "sha256": "009c249c9f2e3f6300a842a144e9e34a20c975559febdb265984aaeef56c8fa3",
+      "bytes": 325881
+    },
+    {
+      "periodo": "2024-12",
+      "archivo": "IPC_DANE_2024-12.xlsx",
+      "url_dane": "https://www.dane.gov.co/files/operaciones/IPC/dic2024/anex-IPC-dic2024.xlsx",
+      "sha256": "7e76e89252ff773d3e61181a7c8c12103f7643489f394d76959717cc47fd1a5a",
+      "bytes": 325541
+    }
+  ],
+  "paquetes": [
+    {
+      "archivo": "IPC_DANE_RESPALDO_PARTE_1.zip",
+      "mes_inicial": "2020-01",
+      "mes_final": "2021-08",
+      "meses": 20,
+      "bytes": 8527755,
+      "sha256": "71f89e2fbf48e81c14998abcf3480815805b1fd708fa78b28d0ba1b71958e059"
+    },
+    {
+      "archivo": "IPC_DANE_RESPALDO_PARTE_2.zip",
+      "mes_inicial": "2021-09",
+      "mes_final": "2023-04",
+      "meses": 20,
+      "bytes": 7678536,
+      "sha256": "7310f7507277161f44bb2938379961d7be119902da134091d0253d1db991e245"
+    },
+    {
+      "archivo": "IPC_DANE_RESPALDO_PARTE_3.zip",
+      "mes_inicial": "2023-05",
+      "mes_final": "2024-12",
+      "meses": 20,
+      "bytes": 14761255,
+      "sha256": "275d27eddb70c10d291e49c5bfeae934bf191099c55f5943e5348296cf323637"
+    }
+  ],
+  "error_maximo_reconstruccion": 2.220446049250313e-16,
+  "nota": "Respaldo de anexos con atribución al DANE. El contraste con el CSV público verifica consistencia; la prueba de descarga desde GitHub se efectuará por separado."
+}
