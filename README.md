@@ -7,18 +7,18 @@ Este repositorio contiene el código, los datos procesados, la metodología y la
 
 El análisis utiliza información de:
 
-- SIPSA-A: abastecimiento agroalimentario.
-- SIPSA-P: precios mayoristas de alimentos.
-- RNDC: registros de transporte de carga.
-- IPC total: inflación general de Pasto y Colombia.
-- IPC de alimentos: inflación alimentaria local y nacional.
-- ICTC: costos nacionales del transporte de carga.
+- **SIPSA-A:** abastecimiento agroalimentario.
+- **SIPSA-P:** precios mayoristas de alimentos.
+- **RNDC:** registros de transporte de carga.
+- **IPC total:** inflación general de Pasto y Colombia.
+- **IPC de alimentos:** inflación alimentaria local y nacional.
+- **ICTC:** costos nacionales del transporte de carga.
 
 El horizonte descriptivo general comprende enero de 2018 a diciembre de 2024.
 
-La información regional RNDC permite construir una muestra común de 59 meses, entre febrero de 2020 y diciembre de 2024.
+La información regional RNDC permite construir una muestra común de **59 meses**, entre febrero de 2020 y diciembre de 2024.
 
-Las estimaciones econométricas ampliadas utilizan una muestra constante de 56 meses, desde mayo de 2020 hasta diciembre de 2024.
+Las estimaciones econométricas ampliadas utilizan una muestra constante de **56 meses**, desde mayo de 2020 hasta diciembre de 2024.
 
 **Objetivo:** estudiar asociaciones dinámicas entre variaciones de fletes, precios mayoristas e inflación regional, evaluar su estabilidad y documentar sus limitaciones estadísticas.
 
@@ -36,19 +36,15 @@ Los resultados no permiten establecer relaciones causales mediante los modelos e
 
 [Seminario — versión final integrada](https://colab.research.google.com/drive/1h5vu2UNc2Guoea2C-ngJTMKy-bzAOoYL)
 
-La versión integrada contiene las fases originales de construcción de variables y las ampliaciones 11B, 13B, 14B, 15B, 17B y 17C.
+La versión integrada contiene las fases originales de construcción de variables y las ampliaciones **11B, 13B, 14B, 15B, 17B y 17C**.
 
 ### 1.3. Versiones y auditorías complementarias
 
-[Colab original de segunda entrega](https://colab.research.google.com/drive/1mKtipF99zHAk_ys3SQE7UQrjTuhYTuF_)
+- [Colab original de segunda entrega](https://colab.research.google.com/drive/1mKtipF99zHAk_ys3SQE7UQrjTuhYTuF_)
+- [Auditoría técnica independiente RNDC](https://colab.research.google.com/drive/1zDI2n_Fg7ZAQZcsfIWlTUVsdKStBiwbN)
+- [Auditoría reproducible de correcciones 19H](https://colab.research.google.com/drive/1aDFwtxzWSfdmFIpkX2Io8XUq-BXzesZr)
 
-[Auditoría técnica independiente RNDC](https://colab.research.google.com/drive/1zDI2n_Fg7ZAQZcsfIWlTUVsdKStBiwbN)
-
-[Auditoría reproducible de correcciones 19H](https://colab.research.google.com/drive/1aDFwtxzWSfdmFIpkX2Io8XUq-BXzesZr)
-
-La segunda entrega se conserva como referencia histórica del proyecto.
-
-La versión integrada constituye el notebook principal actualizado para reproducir las estimaciones ampliadas.
+La segunda entrega se conserva como referencia histórica del proyecto. La versión integrada constituye el notebook principal actualizado para reproducir las estimaciones ampliadas.
 
 ---
 
@@ -89,7 +85,7 @@ El pipeline procesa información de abastecimiento SIPSA-A y precios mayoristas 
 
 Utiliza fuentes oficiales del DANE y respaldos públicos para facilitar la reproducción ante problemas temporales de disponibilidad.
 
-Durante las pruebas de reproducibilidad se verificaron 23 archivos fuente mediante controles de integridad SHA-256.
+Durante las pruebas de reproducibilidad se verificaron **23 archivos fuente** mediante controles de integridad SHA-256.
 
 Los hashes permiten detectar diferencias respecto de archivos de referencia. No equivalen a una auditoría independiente del contenido de todos los registros originales.
 
@@ -114,7 +110,7 @@ Estas reglas no se aplican indiscriminadamente a todas las cadenas numéricas.
 
 Se consolida una serie mensual de abastecimiento para el mercado El Potrerillo de Pasto.
 
-El periodo histórico comprende 84 meses entre enero de 2018 y diciembre de 2024.
+El periodo histórico comprende **84 meses**, entre enero de 2018 y diciembre de 2024.
 
 Las cantidades físicas observadas permiten definir ponderaciones para los productos con precios válidos y comparables.
 
@@ -124,7 +120,7 @@ No se imputan cantidades faltantes.
 
 Se consolidan precios mayoristas mensuales por producto y mercado.
 
-Diciembre de 2017 se incorpora como periodo base para calcular los relativos de precios de enero de 2018.
+Diciembre de 2017 se incorpora como periodo de referencia para calcular los relativos de precios de enero de 2018.
 
 Se revisan escalas y unidades para evitar saltos artificiales por errores de lectura.
 
@@ -134,7 +130,7 @@ Se aplican siete reglas conservadoras de correspondencia entre denominaciones de
 
 El propósito es relacionar cantidades abastecidas con precios mayoristas observados.
 
-La auditoría histórica reportó una cobertura física media anual aproximada del 79,64 %.
+La auditoría histórica reportó una cobertura física media anual aproximada del **79,64 %**.
 
 Esta cobertura se refiere al emparejamiento precio-volumen y no a la cobertura del IPC oficial.
 
@@ -156,20 +152,25 @@ PM_t =
 \right]
 $$
 
-donde:
+Donde:
 
 $$
-w_{i,t}
-=
-\frac{q_{i,t}}
-{\sum_j q_{j,t}}
+w_{i,t} =
+\frac{q_{i,t}}{\sum_j q_{j,t}}
 $$
+
+Aquí:
+
+- \(p_{i,t}\): precio mayorista del producto \(i\) en el mes \(t\).
+- \(p_{i,t-1}\): precio mayorista del mismo producto en el mes anterior.
+- \(q_{i,t}\): cantidad física del producto \(i\) en el mes \(t\).
+- \(w_{i,t}\): ponderación física correspondiente al producto \(i\).
 
 Las ponderaciones se calculan sobre la canasta emparejada de cada periodo.
 
 El indicador representa variaciones mayoristas construidas para el mercado estudiado.
 
-No es un sustituto del IPC de alimentos.
+**No es un sustituto del IPC de alimentos.**
 
 ### 3.7. Sensibilidad de la canasta
 
@@ -194,12 +195,14 @@ La variable regional de transporte se construye a partir de registros RNDC del M
 
 Se utiliza un índice encadenado de Törnqvist para aproximar variaciones mensuales de los fletes regionales observados.
 
-Cobertura:
+**Cobertura:**
 
-- 60 niveles mensuales: enero de 2020 a diciembre de 2024.
-- 59 variaciones mensuales: febrero de 2020 a diciembre de 2024.
+- **60 niveles mensuales:** enero de 2020 a diciembre de 2024.
+- **59 variaciones mensuales:** febrero de 2020 a diciembre de 2024.
 
-La variable principal es `VAR_FLETE_TORNQVIST_PCT`.
+La variable principal es:
+
+`VAR_FLETE_TORNQVIST_PCT`
 
 ### 4.2. Artefactos procesados publicados
 
@@ -217,7 +220,7 @@ Estos archivos permiten examinar etapas del procesamiento y reconstruir resultad
 
 La auditoría RNDC verificó la consistencia computacional de las bases procesadas.
 
-Resultados documentados:
+**Resultados documentados:**
 
 | Indicador | Cantidad |
 |---|---:|
@@ -243,12 +246,12 @@ Estas pruebas reproducen el procesamiento desde artefactos publicados.
 
 Se realizó un contraste independiente utilizando el archivo oficial RNDC de enero de 2020.
 
-Resultados:
+**Resultados:**
 
-- 134.426 registros nacionales.
-- 1.156 registros con destino Pasto.
-- Nueve campos comunes contrastados.
-- Cero discrepancias en la comparación de multiconjuntos normalizados.
+- **134.426** registros nacionales.
+- **1.156** registros con destino Pasto.
+- **Nueve** campos comunes contrastados.
+- **Cero** discrepancias en la comparación de multiconjuntos normalizados.
 
 **Alcance de la validación:**
 
@@ -256,7 +259,7 @@ La conciliación oficial directa cubre enero de 2020 y los nueve campos evaluado
 
 Los otros 59 meses no cuentan con una conciliación independiente equivalente frente a sus archivos originales oficiales.
 
-Por tanto, no se afirma que el maestro completo se haya reconstruido desde los 60 archivos mensuales originales.
+Por tanto, **no se afirma que el maestro completo se haya reconstruido desde los 60 archivos mensuales originales**.
 
 ### 4.5. Integración econométrica
 
@@ -276,11 +279,16 @@ La brecha mensual se define como:
 
 $$
 B_t =
-\pi_{Pasto,t}-
+\pi_{Pasto,t} -
 \pi_{Colombia,t}
 $$
 
-Se expresa en puntos porcentuales.
+Donde:
+
+- \(\pi_{Pasto,t}\): inflación mensual general de Pasto.
+- \(\pi_{Colombia,t}\): inflación mensual general de Colombia.
+
+Se expresa en **puntos porcentuales**.
 
 La brecha compara variaciones mensuales, no niveles absolutos de precios.
 
@@ -292,19 +300,19 @@ La fase 11B incorpora:
 2. Inflación mensual nacional de alimentos.
 3. Brecha mensual de inflación de alimentos.
 
-La brecha se define:
+La brecha se define como:
 
 $$
 B^{alim}_t =
-\pi^{alim}_{Pasto,t}-
+\pi^{alim}_{Pasto,t} -
 \pi^{alim}_{Colombia,t}
 $$
 
 Las fuentes proceden de información oficial del DANE respaldada públicamente y verificada mediante SHA-256.
 
-La base de alimentos tiene 60 meses entre enero de 2020 y diciembre de 2024.
+La base de alimentos tiene **60 meses**, entre enero de 2020 y diciembre de 2024.
 
-La intersección con RNDC produce 59 meses entre febrero de 2020 y diciembre de 2024.
+La intersección con RNDC produce **59 meses**, entre febrero de 2020 y diciembre de 2024.
 
 La fase 11B conserva las variables originales y exporta una base ampliada.
 
@@ -314,9 +322,9 @@ No se realizan imputaciones.
 
 Las variaciones del indicador SIPSA pueden estar relacionadas con cambios en los precios al consumidor.
 
-Sin embargo, los precios mayoristas y minoristas responden también a márgenes, intermediación, abastecimiento y condiciones de oferta y demanda.
+Sin embargo, los precios mayoristas y minoristas responden también a márgenes comerciales, intermediación, abastecimiento y condiciones de oferta y demanda.
 
-Estas explicaciones son plausibles, pero no constituyen identificación causal.
+Estas explicaciones son económicamente plausibles, pero no constituyen identificación causal.
 
 ---
 
@@ -336,9 +344,9 @@ No se imputan periodos sin RNDC.
 
 ## 7. Modelos econométricos ampliados
 
-### 7.1. Fase 13B
+### 7.1. Fase 13B: estimación comparativa
 
-Se estiman 24 modelos:
+Se estiman **24 modelos**, combinando:
 
 - Tres variables dependientes.
 - Dos familias: DL y ARDL.
@@ -346,7 +354,7 @@ Se estiman 24 modelos:
 - Un rezago autorregresivo en ARDL.
 - Muestra constante de 56 observaciones.
 
-Variables dependientes:
+**Variables dependientes:**
 
 1. Brecha IPC total Pasto-Colombia.
 2. Brecha IPC alimentos Pasto-Colombia.
@@ -363,11 +371,11 @@ Se reportan:
 - Indicadores de ajuste.
 - Diagnósticos residuales.
 
-La significancia conjunta no implica que la suma sea significativa.
+La significancia conjunta de un bloque no implica que su suma de coeficientes sea estadísticamente significativa.
 
-### 7.2. Fase 14B
+### 7.2. Fase 14B: robustez
 
-Se estiman 24 escenarios de robustez, ocho por variable dependiente.
+Se estiman **24 escenarios de robustez**, ocho por variable dependiente.
 
 Se examinan:
 
@@ -376,31 +384,31 @@ Se examinan:
 - ICTC nacional.
 - Configuraciones alternativas HAC.
 - Controles estacionales.
-- Exclusión diagnóstica del mayor Cook.
+- Exclusión diagnóstica de la observación más influyente según Cook.
 
-También se comparan estimaciones puntuales con regresión Huber.
+También se comparan estimaciones puntuales con regresión robusta Huber.
 
 Huber no se interpreta como confirmación de significancia HAC.
 
-Las exclusiones no justifican eliminar observaciones originales.
+Las exclusiones diagnósticas no justifican eliminar observaciones originales.
 
-### 7.3. Fase 15B
+### 7.3. Fase 15B: estabilidad temporal
 
 Se ejecutan:
 
-- 63 ventanas móviles de 36 meses.
-- 168 exclusiones individuales.
-- Contrastes con ARDL L2 de referencia.
+- **63 ventanas móviles** de 36 meses.
+- **168 exclusiones individuales**.
+- Contrastes con los modelos ARDL L2 de referencia.
 - Pruebas conjuntas e intervalos HAC.
 - Diagnósticos residuales.
 
-Las ventanas se superponen y no representan experimentos independientes.
+Las ventanas móviles se superponen y no representan experimentos independientes.
 
-### 7.4. Diagnósticos
+### 7.4. Diagnósticos econométricos
 
 Se consideran:
 
-- Pruebas ADF y KPSS.
+- Pruebas de estacionariedad ADF y KPSS.
 - Autocorrelación residual.
 - Heterocedasticidad.
 - Influencia de observaciones.
@@ -412,7 +420,7 @@ La inferencia HAC no elimina endogeneidad, errores de especificación ni problem
 
 ## 8. Principales resultados econométricos
 
-Los resultados corresponden a los modelos ARDL L2 con 56 observaciones.
+Los resultados corresponden a los modelos **ARDL L2 con 56 observaciones**.
 
 | Variable dependiente | R² ajustado | p RNDC conjunta | p SIPSA conjunta |
 |---|---:|---:|---:|
@@ -432,33 +440,33 @@ RNDC y SIPSA tampoco muestran significancia conjunta al 5 % en el modelo princip
 
 El ajuste dentro de muestra es limitado.
 
-No existe evidencia estadística consistente de una asociación dinámica con la brecha regional de inflación alimentaria.
+No existe evidencia estadística consistente de una asociación dinámica con la brecha regional de inflación alimentaria en las especificaciones principales evaluadas.
 
 ### 8.3. Inflación de alimentos de Pasto
 
 En el ARDL L2:
 
-- p conjunta RNDC: 0,2868.
-- p conjunta SIPSA: 0,0479.
-- Suma de coeficientes SIPSA: 0,0581.
-- IC HAC del 95 %: [-0,0041; 0,1203].
+- **p conjunta RNDC:** 0,2868.
+- **p conjunta SIPSA:** 0,0479.
+- **Suma de coeficientes SIPSA:** 0,0581.
+- **IC HAC del 95 %:** [-0,0041; 0,1203].
 
 El intervalo de confianza de la suma incluye cero.
 
-No se puede afirmar que la suma sea significativamente distinta de cero.
+Por tanto, no se puede afirmar que la suma de coeficientes sea estadísticamente distinta de cero al nivel del 5 %.
 
 SIPSA presenta significancia conjunta en:
 
-- 8 de 8 escenarios de robustez.
-- 19 de 21 ventanas móviles.
+- **8 de 8 escenarios de robustez.**
+- **19 de 21 ventanas móviles.**
 
-Sin embargo, el intervalo de confianza de la suma excluye cero únicamente en 2 de las 21 ventanas.
+Sin embargo, el intervalo de confianza de la suma excluye cero únicamente en **2 de las 21 ventanas**.
 
-### 8.4. Interpretación integrada
+### 8.4. Interpretación económica integrada
 
-La asociación entre SIPSA y la inflación de alimentos de Pasto es más persistente que las asociaciones de RNDC con las brechas inflacionarias.
+La asociación entre SIPSA y la inflación mensual de alimentos de Pasto es más persistente que las asociaciones de RNDC con las brechas inflacionarias.
 
-RNDC presenta mayor sensibilidad a las especificaciones y observaciones.
+RNDC presenta mayor sensibilidad a las especificaciones y a determinadas observaciones.
 
 Los resultados son asociativos y no permiten identificar efectos causales ni cuantificar contribuciones causales del transporte a la inflación.
 
@@ -480,7 +488,7 @@ Genera automáticamente:
 
 Los R² ajustados describen ajuste dentro de muestra.
 
-No representan validación predictiva.
+No representan validación predictiva fuera de muestra.
 
 Los criterios AIC y BIC no deben compararse directamente entre variables dependientes diferentes.
 
@@ -489,13 +497,13 @@ Los criterios AIC y BIC no deben compararse directamente entre variables dependi
 Produce una interpretación económica consolidada de:
 
 - RNDC y SIPSA.
-- IPC general y alimentos.
+- IPC general e IPC de alimentos.
 - Significancia conjunta y acumulada.
 - Robustez y estabilidad.
 - Diagnósticos y limitaciones.
-- Alcance no causal.
+- Alcance no causal de los resultados.
 
-No se reestiman modelos en 17B ni 17C.
+No se reestiman modelos en las fases 17B ni 17C.
 
 ---
 
@@ -503,7 +511,7 @@ No se reestiman modelos en 17B ni 17C.
 
 La fase 18 incluye una revisión retrospectiva de episodios de perturbación del abastecimiento, incluyendo mayo de 2021.
 
-Los datos quincenales de boletines oficiales no deben confundirse con variaciones mensuales de los modelos.
+Los datos quincenales de boletines oficiales no deben confundirse con variaciones mensuales de los modelos econométricos.
 
 El semáforo es una herramienta académica ilustrativa y retrospectiva.
 
@@ -523,20 +531,20 @@ No se establecen efectos causales.
 - Bibliotecas Python compatibles.
 - Acceso a respaldos y manifiestos.
 
-No se requiere montar Google Drive ni disponer de bases privadas en MyDrive.
+**No se requiere montar Google Drive ni disponer de bases privadas en MyDrive.**
 
 ### 11.2. Procedimiento
 
 1. Abrir el notebook final integrado.
 2. Iniciar un entorno limpio.
 3. Ejecutar las celdas en orden.
-4. Verificar las descargas SHA-256.
+4. Verificar las descargas y controles SHA-256.
 5. Comprobar las muestras de 84, 59 y 56 meses.
-6. Revisar estimaciones y diagnósticos.
-7. Verificar los dictámenes de fases ampliadas.
-8. Consultar las tablas y figuras finales.
+6. Revisar las estimaciones y sus diagnósticos.
+7. Verificar los dictámenes de las fases ampliadas.
+8. Consultar las tablas, figuras e interpretaciones finales.
 
-Dictámenes principales:
+**Dictámenes principales:**
 
 - `PASS_INTEGRACION_IPC_ALIMENTOS_11B`
 - `PASS_ESTIMACION_COMPARATIVA_13B`
@@ -547,11 +555,11 @@ Dictámenes principales:
 
 Los dictámenes reflejan comprobaciones computacionales definidas en las fases.
 
-No garantizan relaciones causales.
+No garantizan relaciones causales ni que todos los coeficientes sean estadísticamente significativos.
 
 ### 11.3. Evidencia de ejecución
 
-La versión integrada se ejecutó secuencialmente en Google Colab, sin excepciones en las salidas auditadas.
+La versión integrada se ejecutó secuencialmente en Google Colab, sin excepciones en las salidas previamente auditadas.
 
 La disponibilidad futura de servidores, repositorios y bibliotecas externas no puede garantizarse permanentemente.
 
@@ -559,7 +567,7 @@ La disponibilidad futura de servidores, repositorios y bibliotecas externas no p
 
 La auditoría independiente documenta la consistencia de artefactos procesados.
 
-La conciliación oficial directa se limita a enero de 2020.
+La conciliación oficial directa se limita a enero de 2020 y nueve campos comunes.
 
 ---
 
@@ -598,7 +606,7 @@ El notebook produce resultados en directorios temporales:
 - `/content/FASE_17B_ARTICULO`
 - `/content/FASE_17C_INTERPRETACION`
 
-Estos archivos se pierden al eliminar el entorno si no se guardan externamente.
+Estos archivos pueden perderse al eliminar el entorno de ejecución si no se guardan externamente.
 
 El repositorio GitHub no se actualiza automáticamente al ejecutar el notebook.
 
@@ -606,8 +614,8 @@ El repositorio GitHub no se actualiza automáticamente al ejecutar el notebook.
 
 ## 14. Conclusión de reproducibilidad
 
-El notebook integrado proporciona una ruta computacional documentada para reconstruir las variables y reproducir las estimaciones con fuentes publicadas.
+El notebook integrado proporciona una ruta computacional documentada para reconstruir las variables y reproducir las estimaciones econométricas con las fuentes publicadas.
 
-La auditoría RNDC respalda la consistencia de los artefactos procesados, con limitaciones explícitas respecto de los registros originales oficiales.
+La auditoría RNDC respalda la consistencia de los artefactos procesados, con limitaciones explícitas respecto de la conciliación con registros originales oficiales.
 
 Los resultados finales reconocen la incertidumbre estadística, la sensibilidad de RNDC y la ausencia de identificación causal.
