@@ -1,0 +1,14 @@
+{
+  "periodo": "202001",
+  "fuente_declarada": "RNDC Ministerio de Transporte, modulo estadisticas publicas, estadisticas rutas y mercancias",
+  "pagina_consulta": "https://rndc.mintransporte.gov.co/menuprincipal",
+  "nombre_original": "EstadisticasRNDC_202001 (1).xlsx",
+  "archivo": "EstadisticasRNDC_202001.xlsx",
+  "sha256_excel": "ec1a0ea3c4697a622424472bc681bb3043318961e483170ca16c09ac18b47218",
+  "registros_mes": 134426,
+  "filas_pasto": 1156,
+  "columnas": 23,
+  "sha256_csv_auditado": "668e80fcf56033a11155bc9f82726bc4df7ffd9cc4e9e1736a60c1d59aeacbea",
+  "conciliacion_enero": "PASS 23 campos contra CSV, 9 campos contra maestro",
+  "limite": "sin conciliacion de los otros 59 meses"
+}
