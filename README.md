@@ -143,30 +143,28 @@ Estas comprobaciones corresponden a la
 reproducibilidad desde los artefactos procesados
 disponibles en el repositorio de investigación.
 
-### 3.4. Contraste con registros oficiales
+### 3.4. Contraste con registros oficiales y reconstrucción de enero de 2020
 
-Adicionalmente, se efectuó una conciliación
-independiente para enero de 2020 utilizando
-un archivo descargado directamente del portal
-RNDC del Ministerio de Transporte.
+Se desarrolló una verificación independiente de la información correspondiente a enero de 2020, utilizando el archivo mensual `EstadisticasRNDC_202001 (1).xlsx`, obtenido mediante la consulta pública del Registro Nacional de Despachos de Carga (RNDC) del Ministerio de Transporte de Colombia.
 
-La conciliación obtuvo:
+El archivo mensual contiene 134.426 registros nacionales y 23 columnas. A partir de la selección de operaciones con destino al municipio de Pasto, incluyendo sus localidades identificadas en la fuente, se recuperaron 1.156 registros.
 
-- 1.156 registros con destino Pasto.
-- Nueve campos comunes contrastados.
-- Cero discrepancias entre los multiconjuntos
-  de registros después de normalizar sus formatos.
+La auditoría permitió comprobar:
 
-La prueba de enero de 2020 fue realizada
-durante el proceso de auditoría y se documentó
-en el cuaderno de desarrollo.
+- **Reconstrucción desde el archivo mensual:** coincidencia de los 1.156 registros del Excel filtrado con el extracto previamente auditado, contrastando las 23 columnas y conservando la multiplicidad de las observaciones.
+- **Conciliación con el maestro procesado:** coincidencia en nueve campos comunes, sin discrepancias entre los multiconjuntos de registros.
+- **Integridad documental:** comprobación del archivo Excel mediante SHA-256.
+- **Reproducibilidad automática:** descarga del Excel, el manifiesto y el script desde GitHub, seguida de la reconstrucción de los registros de Pasto sin carga manual de archivos.
 
-Esta conciliación no se extendió a los
-59 meses restantes del periodo 2020-2024.
+La evidencia está disponible en [Auditoría RNDC — enero de 2020](auditoria/rndc_enero_2020/).
 
-Por tanto, no se afirma haber reproducido
-la totalidad de la base maestra directamente
-desde los archivos Excel oficiales originales.
+El archivo mensual original tiene la siguiente huella SHA-256:
+
+`ec1a0ea3c4697a622424472bc681bb3043318961e483170ca16c09ac18b47218`
+
+**Alcance y limitaciones:** la verificación directa desde el archivo mensual oficial corresponde exclusivamente a enero de 2020. Los 59 meses restantes no han sido conciliados individualmente desde sus archivos primarios. La reconstrucción general del índice Törnqvist para 2020–2024 se comprueba mediante los archivos procesados publicados en el repositorio.
+
+La coincidencia computacional no constituye evidencia de causalidad ni garantiza la robustez econométrica de las asociaciones estimadas.
 
 ### 3.5. Integración con el notebook principal
 
@@ -214,6 +212,17 @@ No constituye evidencia de causalidad ni
 garantiza significancia o estabilidad
 estadística de las asociaciones estimadas.
 
+**Prueba automatizada desde GitHub — enero de 2020**
+
+La carpeta [auditoria/rndc_enero_2020](auditoria/rndc_enero_2020/) contiene el archivo mensual de referencia, su manifiesto de integridad, el código de verificación y la documentación correspondiente.
+
+La reproducción automática fue comprobada en un entorno independiente de Google Colab:
+
+[Notebook de prueba automática RNDC](https://colab.research.google.com/drive/1m3msgeROiLGZIZsHsoMNXn69yOKmtCoR?usp=sharing)
+
+La prueba RNDC 12 descarga los insumos publicados, verifica el SHA-256 del Excel y reconstruye los 1.156 registros con destino a Pasto. El dictamen obtenido fue `PASS_REPRODUCCION_AUTOMATICA_RNDC`.
+
+Esta prueba no sustituye las conciliaciones RNDC 06D y RNDC 11, ni implica una validación directa de los archivos oficiales de los otros 59 meses.
 ---
 
 ## 4. Alcance y limitaciones
